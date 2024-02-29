@@ -141,11 +141,4 @@ public class StringUtil {
         return maskFormatter.valueToString(value);
     }
 
-    public static String substringCaseLargeText(String text, int size) {
-        if (text.length() > size) {
-            return text.substring(0, size).concat("...");
-        }
-
-        return text;
-    }
 }

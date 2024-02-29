@@ -11,30 +11,32 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
 
-@Path("/user")
+/**
+ * 
+ * @author Edevaldo
+ */
+@Path("vitahealth/user")
 public class UserController {
 
     @Inject
     UserService userService;
 
     @POST
-    @Path("/add")
-    public Response createUser(UserDTO dto, @HeaderParam String factoryTeste) {
-
-        return userService.createUser(dto, factoryTeste);
-    }
-
-    @GET
-    @Path("/find")
-    public Response findUser(@HeaderParam String document) {
-
-        return userService.findUser(document);
+    @Path("/create")
+    public Response createUser(UserDTO dto) {
+        return userService.createUser(dto);
     }
 
     @GET
     @Path("/login")
-    public Response makeLogin(@HeaderParam String email, @HeaderParam String password) {
-
-        return userService.makeLogin(email, password);
+    public Response login(@HeaderParam String email, @HeaderParam String password) {
+        return userService.login(email, password);
     }
+
+    @GET
+    @Path("/recover")
+    public Response recover(@HeaderParam String email) {
+        return userService.recover(email);
+    }
+
 }

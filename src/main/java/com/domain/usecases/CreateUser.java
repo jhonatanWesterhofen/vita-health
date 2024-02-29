@@ -1,36 +1,35 @@
 package com.domain.usecases;
 
-import java.time.LocalDateTime;
-
 import com.domain.entities.dto.UserDTO;
 import com.domain.entities.enums.EnumErrorCode;
 import com.domain.entities.mapper.UserMapper;
 import com.domain.entities.utils.ClassException;
 import com.domain.entities.vo.QueryFieldInfoVO;
-import com.infra.database.panache.repositories.PanacheUserRepository;
+import com.domain.repositories.IUserRepository;
+import com.infra.utils.Utils;
 
+/**
+ * 
+ * @author Edevaldo
+ */
 public class CreateUser {
 
-    PanacheUserRepository panacheUserRepository;
+    IUserRepository userRepository;
 
-    public CreateUser(PanacheUserRepository panacheUserRepository) {
-        this.panacheUserRepository = panacheUserRepository;
+    public CreateUser(IUserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public UserDTO execute(UserDTO dto) {
 
-        var userBO = panacheUserRepository.findBy(new QueryFieldInfoVO("document", dto.getDocument()));
+        var userBO = userRepository.findBy(new QueryFieldInfoVO("document", dto.getDocument()));
 
-        if (userBO != null) {
+        if (Utils.isNotNull(userBO)) {
             throw new ClassException(EnumErrorCode.USUARIO_JA_EXISTE);
         }
 
-        dto.setCreatedAt(LocalDateTime.now());
+        return UserMapper.toDTO(userRepository.create(UserMapper.toBO(dto)));
 
-        var newUserBO = UserMapper.toBO(dto);
-
-        panacheUserRepository.create(newUserBO);
-
-        return UserMapper.toDTO(newUserBO);
     }
+
 }

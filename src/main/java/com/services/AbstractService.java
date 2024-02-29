@@ -1,15 +1,20 @@
 package com.services;
 
-import com.infra.database.panache.repositories.PanacheCartRepository;
-import com.infra.database.panache.repositories.PanacheUserRepository;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+import com.domain.repositories.IUserRepository;
 
 import jakarta.inject.Inject;
 
+/**
+ * 
+ * @author Edevaldo
+ */
 public abstract class AbstractService {
 
     @Inject
-    PanacheUserRepository userRepository;
+    IUserRepository userRepository;
 
-    @Inject
-    PanacheCartRepository cartRepository;
+    @ConfigProperty(name = "encrypt-key")
+    String encryptKey;
 }

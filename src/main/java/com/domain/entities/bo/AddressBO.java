@@ -2,7 +2,11 @@ package com.domain.entities.bo;
 
 import com.domain.entities.vo.UuidVO;
 
-public class UserAddressBO {
+/**
+ * 
+ * @author Edevaldo
+ */
+public class AddressBO {
 
     private UuidVO id;
 
@@ -16,7 +20,7 @@ public class UserAddressBO {
 
     private String addressHouseNumber;
 
-    public UserAddressBO(UuidVO id, String addressCity, String addressNeighborhood, String addressStreet,
+    public AddressBO(UuidVO id, String addressCity, String addressNeighborhood, String addressStreet,
             String addressComplement, String addressHouseNumber) {
         this.id = id;
         this.addressCity = addressCity;

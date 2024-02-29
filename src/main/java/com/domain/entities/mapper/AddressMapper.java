@@ -1,18 +1,22 @@
 package com.domain.entities.mapper;
 
-import com.domain.entities.bo.UserAddressBO;
-import com.domain.entities.dto.UserAddressDTO;
+import com.domain.entities.bo.AddressBO;
+import com.domain.entities.dto.AddressDTO;
 import com.domain.entities.vo.UuidVO;
 
-public class UserAddressMapper {
+/**
+ * 
+ * @author Edevaldo
+ */
+public class AddressMapper {
 
-    public static UserAddressDTO toDTO(UserAddressBO bo) {
+    public static AddressDTO toDTO(AddressBO bo) {
 
         if (bo == null) {
             return null;
         }
 
-        var dto = new UserAddressDTO();
+        var dto = new AddressDTO();
 
         dto.setId(bo.getId().getValue().toString());
         dto.setAddressCity(bo.getAddressCity());
@@ -24,13 +28,13 @@ public class UserAddressMapper {
         return dto;
     }
 
-    public static UserAddressBO toBO(UserAddressDTO dto) {
+    public static AddressBO toBO(AddressDTO dto) {
 
         if (dto == null) {
             return null;
         }
 
-        return new UserAddressBO(
+        return new AddressBO(
                 new UuidVO(dto.getId()),
                 dto.getAddressCity(),
                 dto.getAddressNeighborhood(),

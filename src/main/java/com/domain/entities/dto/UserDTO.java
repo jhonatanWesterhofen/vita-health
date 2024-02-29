@@ -2,6 +2,10 @@ package com.domain.entities.dto;
 
 import java.time.LocalDateTime;
 
+/**
+ * 
+ * @author Edevaldo
+ */
 public class UserDTO {
 
     private String id;
@@ -18,7 +22,7 @@ public class UserDTO {
 
     private LocalDateTime createdAt;
 
-    private UserAddressDTO address;
+    private AddressDTO address;
 
     public String getPassword() {
         return password;
@@ -28,11 +32,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public UserAddressDTO getAddress() {
+    public AddressDTO getAddress() {
         return address;
     }
 
-    public void setAddress(UserAddressDTO address) {
+    public void setAddress(AddressDTO address) {
         this.address = address;
     }
 

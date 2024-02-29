@@ -1,18 +1,24 @@
 package com.infra.database.panache.models;
 
+import java.util.UUID;
+
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * 
+ * @author Edevaldo
+ */
 @Entity
-@Table(name = "API_USER_ADDRESS")
-public class PanacheUserAddress extends PanacheEntityBase {
+@Table(name = "VH_ADDRESS")
+public class PanacheAddress extends PanacheEntityBase {
 
     @Id
     @Column(name = "ID")
-    private String id;
+    private UUID id;
 
     @Column(name = "ADDRESS_CITY")
     private String addressCity;
@@ -28,14 +34,6 @@ public class PanacheUserAddress extends PanacheEntityBase {
 
     @Column(name = "ADDRESS_HOUSE_NUMBER")
     private String addressHouseNumber;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getAddressCity() {
         return addressCity;
@@ -75,5 +73,13 @@ public class PanacheUserAddress extends PanacheEntityBase {
 
     public void setAddressHouseNumber(String addressHouseNumber) {
         this.addressHouseNumber = addressHouseNumber;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

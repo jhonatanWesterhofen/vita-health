@@ -8,12 +8,15 @@ import com.infra.database.panache.models.PanacheUser;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
+/**
+ * 
+ * @author Edevaldo
+ */
 @ApplicationScoped
 public class PanacheUserRepository implements IUserRepository {
 
     @Override
     public UserBO create(UserBO bo) {
-
         var panacheUser = PanacheUserMapper.toEntity(bo);
 
         panacheUser.persistAndFlush();
@@ -23,7 +26,6 @@ public class PanacheUserRepository implements IUserRepository {
 
     @Override
     public UserBO findBy(QueryFieldInfoVO field) {
-
         return PanacheUser.find(field.getFieldName(), field.getFieldValue())
                 .firstResultOptional()
                 .map(entity -> PanacheUserMapper.toDomain((PanacheUser) entity))
@@ -32,7 +34,6 @@ public class PanacheUserRepository implements IUserRepository {
 
     @Override
     public UserBO merge(UserBO bo) {
-
         var panacheUser = PanacheUserMapper.toEntity(bo);
 
         PanacheUser.getEntityManager().merge(panacheUser);

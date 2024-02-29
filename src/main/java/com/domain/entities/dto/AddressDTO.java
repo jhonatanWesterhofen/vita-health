@@ -1,6 +1,10 @@
 package com.domain.entities.dto;
 
-public class UserAddressDTO {
+/**
+ * 
+ * @author Edevaldo
+ */
+public class AddressDTO {
 
     private String id;
 

@@ -3,11 +3,12 @@ package com.domain.entities.enums;
 public enum EnumErrorCode implements IEnum {
 
     CAMPO_OBRIGATORIO("001", "Campo {0} é obrigatorio!", 400),
-    CAMPO_INVALIDO("001", "Campo {0} é inválido!", 400),
-    PESSOA_NAO_ENCONTRADA("001", "Pessoa não encontrada!", 400),
-    EMAIL_INVALIDO("001", "O email informado esta incorreto!", 400),
-    SENHA_INVALIDA("001", "A senha informado esta incorreta!", 400),
-    USUARIO_JA_EXISTE("002", "Usuario já existente!", 400);
+    CAMPO_INVALIDO("002", "Campo {0} é inválido!", 400),
+    PESSOA_NAO_ENCONTRADA("003", "Pessoa não encontrada!", 400),
+    EMAIL_INVALIDO("004", "O email informado esta incorreto!", 400),
+    SENHA_INVALIDA("005", "A senha informado esta incorreta!", 400),
+    CPF_INVALIDO("006", "CPF informado Invalido!", 400),
+    USUARIO_JA_EXISTE("007", "Usuario já existente!", 400);
 
     private final String error;
     private final int httpStatus;
@@ -33,5 +34,9 @@ public enum EnumErrorCode implements IEnum {
 
     public int getHttpStatus() {
         return httpStatus;
+    }
+
+    public static EnumErrorCode parseByKey(String key) {
+        return (EnumErrorCode) EnumUtil.parseByKey(EnumErrorCode.class, key);
     }
 }

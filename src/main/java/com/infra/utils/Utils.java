@@ -23,7 +23,4 @@ public class Utils {
         return value == null ? false : true;
     }
 
-    public static boolean isDevProfile() {
-        return ProfileManager.getActiveProfile().equals("dev");
-    }
 }

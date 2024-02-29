@@ -2,13 +2,19 @@ package com.domain.entities.mapper;
 
 import com.domain.entities.bo.UserBO;
 import com.domain.entities.dto.UserDTO;
+import com.domain.entities.vo.DateVO;
 import com.domain.entities.vo.UuidVO;
+import com.infra.utils.Utils;
 
+/**
+ * 
+ * @author Edevaldo
+ */
 public class UserMapper {
 
     public static UserDTO toDTO(UserBO bo) {
 
-        if (bo == null) {
+        if (Utils.isNull(bo)) {
             return null;
         }
 
@@ -17,10 +23,10 @@ public class UserMapper {
         dto.setDocument(bo.getDocument());
         dto.setId(bo.getId().getValue().toString());
         dto.setName(bo.getName());
-        dto.setCreatedAt(bo.getCreatedAt());
+        dto.setCreatedAt(bo.getCreatedAt().getValue());
         dto.setEmail(bo.getEmail());
         dto.setPhoneNumber(bo.getPhoneNumber());
-        dto.setAddress(UserAddressMapper.toDTO(bo.getAddress()));
+        dto.setAddress(AddressMapper.toDTO(bo.getAddress()));
         dto.setPassword(bo.getPassword());
 
         return dto;
@@ -28,7 +34,7 @@ public class UserMapper {
 
     public static UserBO toBO(UserDTO dto) {
 
-        if (dto == null) {
+        if (Utils.isNull(dto)) {
             return null;
         }
 
@@ -36,10 +42,10 @@ public class UserMapper {
                 new UuidVO(dto.getId()),
                 dto.getName(),
                 dto.getDocument(),
-                dto.getCreatedAt(),
+                new DateVO(dto.getCreatedAt()),
                 dto.getEmail(),
                 dto.getPhoneNumber(),
-                UserAddressMapper.toBO(dto.getAddress()),
+                AddressMapper.toBO(dto.getAddress()),
                 dto.getPassword());
     }
 }

@@ -5,11 +5,15 @@ import com.domain.entities.mapper.UserMapper;
 import com.domain.entities.vo.QueryFieldInfoVO;
 import com.domain.repositories.IUserRepository;
 
-public class FindUserUseCase {
+/**
+ * 
+ * @author Edevaldo
+ */
+public class FindUser {
 
     IUserRepository userRepository;
 
-    public FindUserUseCase(IUserRepository userRepository) {
+    public FindUser(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

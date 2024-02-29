@@ -1,12 +1,15 @@
 package com.domain.entities.bo;
 
-import java.time.LocalDateTime;
-
 import com.domain.entities.enums.EnumErrorCode;
 import com.domain.entities.utils.ClassException;
 import com.domain.entities.utils.StringUtil;
+import com.domain.entities.vo.DateVO;
 import com.domain.entities.vo.UuidVO;
 
+/**
+ * 
+ * @author Edevaldo
+ */
 public class UserBO {
 
     private UuidVO id;
@@ -15,7 +18,7 @@ public class UserBO {
 
     private String document;
 
-    private LocalDateTime createdAt;
+    private DateVO createdAt;
 
     private String email;
 
@@ -23,10 +26,10 @@ public class UserBO {
 
     private String password;
 
-    private UserAddressBO address;
+    private AddressBO address;
 
-    public UserBO(UuidVO id, String name, String document, LocalDateTime createdAt, String email, String phoneNumber,
-            UserAddressBO address, String password) {
+    public UserBO(UuidVO id, String name, String document, DateVO createdAt, String email, String phoneNumber,
+            AddressBO address, String password) {
         this.id = id;
         this.name = name;
         this.document = document;
@@ -55,7 +58,7 @@ public class UserBO {
         return document;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public DateVO getCreatedAt() {
         return createdAt;
     }
 
@@ -67,7 +70,7 @@ public class UserBO {
         return phoneNumber;
     }
 
-    public UserAddressBO getAddress() {
+    public AddressBO getAddress() {
         return address;
     }
 
@@ -79,10 +82,6 @@ public class UserBO {
 
         if (StringUtil.isNullOrEmpty(this.document)) {
             throw new ClassException(EnumErrorCode.CAMPO_OBRIGATORIO, "Documento");
-        }
-
-        if (!this.email.contains("@")) {
-            throw new ClassException(EnumErrorCode.CAMPO_INVALIDO, "Email");
         }
     }
 }

@@ -13,8 +13,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+/**
+ * 
+ * @author Edevaldo
+ */
 @Entity
-@Table(name = "API_USER")
+@Table(name = "VH_USER")
 public class PanacheUser extends PanacheEntityBase {
 
     @Id
@@ -41,7 +45,7 @@ public class PanacheUser extends PanacheEntityBase {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ADDRESS", referencedColumnName = "ID")
-    private PanacheUserAddress userAddress;
+    private PanacheAddress userAddress;
 
     public String getPassword() {
         return password;
@@ -51,11 +55,11 @@ public class PanacheUser extends PanacheEntityBase {
         this.password = password;
     }
 
-    public PanacheUserAddress getUserAddress() {
+    public PanacheAddress getUserAddress() {
         return userAddress;
     }
 
-    public void setUserAddress(PanacheUserAddress userAddress) {
+    public void setUserAddress(PanacheAddress userAddress) {
         this.userAddress = userAddress;
     }
 

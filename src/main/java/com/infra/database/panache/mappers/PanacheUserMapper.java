@@ -1,14 +1,20 @@
 package com.infra.database.panache.mappers;
 
 import com.domain.entities.bo.UserBO;
+import com.domain.entities.vo.DateVO;
 import com.domain.entities.vo.UuidVO;
 import com.infra.database.panache.models.PanacheUser;
+import com.infra.utils.Utils;
 
+/**
+ * 
+ * @author Edevaldo
+ */
 public class PanacheUserMapper {
 
     public static PanacheUser toEntity(UserBO bo) {
 
-        if (bo == null) {
+        if (Utils.isNull(bo)) {
             return null;
         }
 
@@ -16,10 +22,10 @@ public class PanacheUserMapper {
         panacheUser.setDocument(bo.getDocument());
         panacheUser.setId(bo.getId().getValue());
         panacheUser.setName(bo.getName());
-        panacheUser.setCreatedAt(bo.getCreatedAt());
+        panacheUser.setCreatedAt(bo.getCreatedAt().getValue());
         panacheUser.setEmail(bo.getEmail());
         panacheUser.setPhoneNumber(bo.getPhoneNumber());
-        panacheUser.setUserAddress(PanacheUserAddressMapper.toEntity(bo.getAddress()));
+        panacheUser.setUserAddress(PanacheAddressMapper.toEntity(bo.getAddress()));
         panacheUser.setPassword(bo.getPassword());
 
         return panacheUser;
@@ -27,7 +33,7 @@ public class PanacheUserMapper {
 
     public static UserBO toDomain(PanacheUser panacheUser) {
 
-        if (panacheUser == null) {
+        if (Utils.isNull(panacheUser)) {
             return null;
         }
 
@@ -35,10 +41,12 @@ public class PanacheUserMapper {
                 new UuidVO(panacheUser.getId().toString()),
                 panacheUser.getName(),
                 panacheUser.getDocument(),
-                panacheUser.getCreatedAt(),
+                new DateVO(panacheUser.getCreatedAt()),
                 panacheUser.getEmail(),
                 panacheUser.getPhoneNumber(),
-                PanacheUserAddressMapper.toDomain(panacheUser.getUserAddress()),
+                PanacheAddressMapper.toDomain(panacheUser.getUserAddress()),
                 panacheUser.getPassword());
+
     }
+
 }
